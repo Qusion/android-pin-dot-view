@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pin_textfield_colorPrimary">#008577</color>
+    <color name="number_dial_default_text_color">#000000</color>
+    <color name="transparent_color">#00000000</color>
+
+    <color name="test_color_1">#FFF453</color>
+    <color name="test_color_2">#45FA89</color>
+
+</resources>

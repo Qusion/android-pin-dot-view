@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#343434"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/sizeColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        android:text="text size &amp; color" />
+
+    <Button
+        android:id="@+id/delimiterSizeColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/sizeColor"
+        app:layout_constraintTop_toTopOf="@id/sizeColor"
+        android:text="delimiter size &amp; color" />
+
+
+    <Button
+        android:id="@+id/textStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/sizeColor"
+        app:layout_constraintTop_toBottomOf="@id/sizeColor"
+        android:text="text style" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/numberDialView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="111" />
+
+    <com.qusion.lib_pindotview.NumberDialView
+        android:id="@+id/numberDialView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="400dp"
+        app:backgroundColor="#00000000"
+        app:delimiterColor="#676767"
+        app:horizontalDelimiterWidth="8dp"
+        app:textColor="#AAAAAA"
+        app:textSize="16sp"
+        app:textStyle="italic|bold"
+        app:verticalDelimiterWidth="3dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
