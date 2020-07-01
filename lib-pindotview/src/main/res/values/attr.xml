@@ -13,4 +13,12 @@
         <attr name="verticalDelimiterWidth" format="dimension" />
         <attr name="horizontalDelimiterWidth" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="PinDotView">
+        <attr name="pinLength" format="integer" />
+        <attr name="idleDotSize" format="dimension" />
+        <attr name="idleDotColor" format="color" />
+        <attr name="activeDotColor" format="color" />
+        <attr name="activeDotSizeModifier" format="float" />
+    </declare-styleable>
 </resources>

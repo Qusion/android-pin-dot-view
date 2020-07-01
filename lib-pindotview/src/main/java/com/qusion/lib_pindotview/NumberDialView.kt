@@ -26,9 +26,6 @@ class NumberDialView @JvmOverloads constructor(
     private var mVerticalDelimiterWidth = 0
     private var mHorizontalDelimiterWidth = 0
 
-    private var mWidth = 0
-    private var mHeight = 0
-
     private val numberDialView: View
     private val numbers: List<TextView>
     private val verticalDelimiters: List<View>
@@ -98,14 +95,11 @@ class NumberDialView @JvmOverloads constructor(
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        mWidth = w
-        mHeight = h
         invalidate()
     }
 
     override fun dispatchDraw(canvas: Canvas?) {
         super.dispatchDraw(canvas)
-
         updateView()
     }
 
@@ -142,6 +136,7 @@ class NumberDialView @JvmOverloads constructor(
         }
     }
 
+    //region Setters
     fun setOnNumberClickListener(l: OnNumberClickListener) {
         mOnNumberClickListener = l
     }
@@ -193,4 +188,5 @@ class NumberDialView @JvmOverloads constructor(
         set(horizontalDelimiterWidth) {
             this.mHorizontalDelimiterWidth = horizontalDelimiterWidth
         }
+    //endregion
 }

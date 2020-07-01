@@ -11,40 +11,43 @@
         android:id="@+id/sizeColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="20dp"
-        android:text="text size &amp; color" />
+        android:text="text size &amp; color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/delimiterSizeColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="delimiter size &amp; color"
         app:layout_constraintLeft_toRightOf="@id/sizeColor"
-        app:layout_constraintTop_toTopOf="@id/sizeColor"
-        android:text="delimiter size &amp; color" />
+        app:layout_constraintTop_toTopOf="@id/sizeColor" />
 
 
     <Button
         android:id="@+id/textStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="text style"
         app:layout_constraintLeft_toLeftOf="@id/sizeColor"
-        app:layout_constraintTop_toBottomOf="@id/sizeColor"
-        android:text="text style" />
+        app:layout_constraintTop_toBottomOf="@id/sizeColor" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/output"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+    <com.qusion.lib_pindotview.PinDotView
+        android:id="@+id/pinDotView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="80dp"
+        app:activeDotColor="#20FFFF00"
+        app:idleDotSize="6dp"
+        app:activeDotSizeModifier="3.1"
+        app:pinLength="5"
         app:layout_constraintBottom_toTopOf="@id/numberDialView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:text="111" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <com.qusion.lib_pindotview.NumberDialView
         android:id="@+id/numberDialView"
@@ -52,11 +55,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="400dp"
         app:backgroundColor="#00000000"
-        app:delimiterColor="#676767"
-        app:horizontalDelimiterWidth="8dp"
-        app:textColor="#AAAAAA"
+        app:delimiterColor="#A0A0A0"
+        app:horizontalDelimiterWidth="1dp"
+        app:textColor="#FFFFFF"
         app:textSize="16sp"
-        app:textStyle="italic|bold"
-        app:verticalDelimiterWidth="3dp" />
+        app:textStyle="bold"
+        app:verticalDelimiterWidth="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

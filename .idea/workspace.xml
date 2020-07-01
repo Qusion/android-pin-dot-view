@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c1dc4fee-eb3d-4d46-9f9c-3cf43ff5e7ec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/PinDotView.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/drawable/ic_dot_idle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qusion/pintextfield/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qusion/pintextfield/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/NumberDialView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/NumberDialView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/attr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/attr.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/colors.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_29" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1e5INZtwYgRtHud9p0EhrQasFRk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_XL_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-07-01T12:35:25.274Z" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1dc4fee-eb3d-4d46-9f9c-3cf43ff5e7ec" name="Default Changelist" comment="" />
+      <created>1593604987534</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593604987534</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="612" y="402" key="AndroidCreateResourceFileDialog" timestamp="1593605624723">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="612" y="402" key="AndroidCreateResourceFileDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1593605624723" />
+    <state width="523" height="466" key="DebuggerActiveHint" timestamp="1593638195109">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="523" height="466" key="DebuggerActiveHint/0.0.2048.1280@0.0.2048.1280" timestamp="1593638195109" />
+    <state width="2006" height="454" key="GridCell.Tab.0.bottom" timestamp="1593639489545">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.0.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489545" />
+    <state width="2006" height="328" key="GridCell.Tab.0.bottom/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412179" />
+    <state width="2006" height="454" key="GridCell.Tab.0.center" timestamp="1593639489544">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.0.center/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489544" />
+    <state width="2006" height="328" key="GridCell.Tab.0.center/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412178" />
+    <state width="2006" height="454" key="GridCell.Tab.0.left" timestamp="1593639489543">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.0.left/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489543" />
+    <state width="2006" height="328" key="GridCell.Tab.0.left/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412176" />
+    <state width="2006" height="454" key="GridCell.Tab.0.right" timestamp="1593639489544">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489544" />
+    <state width="2006" height="328" key="GridCell.Tab.0.right/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412179" />
+    <state width="2006" height="454" key="GridCell.Tab.1.bottom" timestamp="1593639489547">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.1.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489547" />
+    <state width="2006" height="454" key="GridCell.Tab.1.bottom/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478534" />
+    <state width="2006" height="454" key="GridCell.Tab.1.center" timestamp="1593639489546">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.1.center/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489546" />
+    <state width="2006" height="454" key="GridCell.Tab.1.center/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478533" />
+    <state width="2006" height="454" key="GridCell.Tab.1.left" timestamp="1593639489545">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.1.left/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489545" />
+    <state width="2006" height="454" key="GridCell.Tab.1.left/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478532" />
+    <state width="2006" height="454" key="GridCell.Tab.1.right" timestamp="1593639489547">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state width="2006" height="454" key="GridCell.Tab.1.right/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489547" />
+    <state width="2006" height="454" key="GridCell.Tab.1.right/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478534" />
+    <state x="525" y="279" key="SettingsEditor" timestamp="1593606851629">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="525" y="279" key="SettingsEditor/0.0.2048.1280@0.0.2048.1280" timestamp="1593606851629" />
+    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup" timestamp="1593638116534">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1593638116534" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/qusion/pintextfield/MainActivity.kt</url>
+          <line>22</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

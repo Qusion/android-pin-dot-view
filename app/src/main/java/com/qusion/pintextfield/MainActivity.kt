@@ -1,6 +1,7 @@
 package com.qusion.pintextfield
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.qusion.pindotview.R
 
@@ -17,8 +18,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        numberDialView.setOnNumberClickListener{ number ->
-            output.text = output.text.toString() + number
+        pinDotView.numberDialView = numberDialView
+        pinDotView.setOnCompletedListener { pin ->
+            Log.d("pin", pin)
         }
 
         //Text size and color
@@ -26,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             numberDialView.apply {
                 val rand = Random.nextInt(20, 30)
                 textSize = rand
-                textColor = context.getColor(if(rand >= 25) R.color.test_color_1 else  R.color.test_color_2)
+                textColor =
+                    context.getColor(if (rand >= 25) R.color.test_color_1 else R.color.test_color_2)
             }
         }
 
@@ -36,7 +39,8 @@ class MainActivity : AppCompatActivity() {
                 val rand = Random.nextInt(4, 16)
                 horizontalDelimiterWidth = rand
                 verticalDelimiterWidth = rand - 3
-                delimiterColor = context.getColor(if(rand >= 10) R.color.test_color_1 else  R.color.test_color_2)
+                delimiterColor =
+                    context.getColor(if (rand >= 10) R.color.test_color_1 else R.color.test_color_2)
             }
         }
 
