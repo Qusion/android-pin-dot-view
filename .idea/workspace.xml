@@ -10,11 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1dc4fee-eb3d-4d46-9f9c-3cf43ff5e7ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/PinDotView.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/drawable/ic_dot_idle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/drawable/ic_back.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/lib-pindotview/lib-pindotview.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/lib-pindotview/lib-pindotview.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qusion/pintextfield/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qusion/pintextfield/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/NumberDialView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/NumberDialView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/PinDotView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview/PinDotView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/res/layout/number_dial_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/layout/number_dial_view.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/attr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/attr.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-pindotview/src/main/res/values/colors.xml" afterDir="false" />
     </list>
@@ -62,6 +78,9 @@
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.qusion.lib_pindotview" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib-pindotview/src/main/java/com/qusion/lib_pindotview" />
     </key>
@@ -140,72 +159,69 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="612" y="402" key="AndroidCreateResourceFileDialog" timestamp="1593605624723">
+    <state x="762" y="394" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1593801665439">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="612" y="402" key="AndroidCreateResourceFileDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1593605624723" />
+    <state x="762" y="394" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1593801665439" />
+    <state x="612" y="402" key="AndroidCreateResourceFileDialog" timestamp="1593676221693">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="612" y="402" key="AndroidCreateResourceFileDialog/0.0.2048.1280@0.0.2048.1280" timestamp="1593676221693" />
     <state width="523" height="466" key="DebuggerActiveHint" timestamp="1593638195109">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state width="523" height="466" key="DebuggerActiveHint/0.0.2048.1280@0.0.2048.1280" timestamp="1593638195109" />
-    <state width="2006" height="454" key="GridCell.Tab.0.bottom" timestamp="1593639489545">
+    <state width="2006" height="454" key="GridCell.Tab.0.bottom" timestamp="1593801549450">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.0.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489545" />
-    <state width="2006" height="328" key="GridCell.Tab.0.bottom/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412179" />
-    <state width="2006" height="454" key="GridCell.Tab.0.center" timestamp="1593639489544">
+    <state width="2006" height="454" key="GridCell.Tab.0.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549450" />
+    <state width="2006" height="454" key="GridCell.Tab.0.bottom/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979612" />
+    <state width="2006" height="454" key="GridCell.Tab.0.center" timestamp="1593801549449">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.0.center/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489544" />
-    <state width="2006" height="328" key="GridCell.Tab.0.center/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412178" />
-    <state width="2006" height="454" key="GridCell.Tab.0.left" timestamp="1593639489543">
+    <state width="2006" height="454" key="GridCell.Tab.0.center/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549449" />
+    <state width="2006" height="454" key="GridCell.Tab.0.center/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979611" />
+    <state width="2006" height="454" key="GridCell.Tab.0.left" timestamp="1593801549447">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.0.left/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489543" />
-    <state width="2006" height="328" key="GridCell.Tab.0.left/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412176" />
-    <state width="2006" height="454" key="GridCell.Tab.0.right" timestamp="1593639489544">
+    <state width="2006" height="454" key="GridCell.Tab.0.left/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549447" />
+    <state width="2006" height="454" key="GridCell.Tab.0.left/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979611" />
+    <state width="2006" height="454" key="GridCell.Tab.0.right" timestamp="1593801549449">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489544" />
-    <state width="2006" height="328" key="GridCell.Tab.0.right/0.23.2048.1257@0.23.2048.1257" timestamp="1593639412179" />
-    <state width="2006" height="454" key="GridCell.Tab.1.bottom" timestamp="1593639489547">
+    <state width="2006" height="454" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549449" />
+    <state width="2006" height="454" key="GridCell.Tab.0.right/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979612" />
+    <state width="2006" height="454" key="GridCell.Tab.1.bottom" timestamp="1593801549452">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.1.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489547" />
-    <state width="2006" height="454" key="GridCell.Tab.1.bottom/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478534" />
-    <state width="2006" height="454" key="GridCell.Tab.1.center" timestamp="1593639489546">
+    <state width="2006" height="454" key="GridCell.Tab.1.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549452" />
+    <state width="2006" height="454" key="GridCell.Tab.1.bottom/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979614" />
+    <state width="2006" height="454" key="GridCell.Tab.1.center" timestamp="1593801549451">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.1.center/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489546" />
-    <state width="2006" height="454" key="GridCell.Tab.1.center/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478533" />
-    <state width="2006" height="454" key="GridCell.Tab.1.left" timestamp="1593639489545">
+    <state width="2006" height="454" key="GridCell.Tab.1.center/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549451" />
+    <state width="2006" height="454" key="GridCell.Tab.1.center/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979613" />
+    <state width="2006" height="454" key="GridCell.Tab.1.left" timestamp="1593801549450">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.1.left/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489545" />
-    <state width="2006" height="454" key="GridCell.Tab.1.left/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478532" />
-    <state width="2006" height="454" key="GridCell.Tab.1.right" timestamp="1593639489547">
+    <state width="2006" height="454" key="GridCell.Tab.1.left/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549450" />
+    <state width="2006" height="454" key="GridCell.Tab.1.left/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979613" />
+    <state width="2006" height="454" key="GridCell.Tab.1.right" timestamp="1593801549451">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="454" key="GridCell.Tab.1.right/0.0.2048.1280@0.0.2048.1280" timestamp="1593639489547" />
-    <state width="2006" height="454" key="GridCell.Tab.1.right/0.23.2048.1257@0.23.2048.1257" timestamp="1593639478534" />
+    <state width="2006" height="454" key="GridCell.Tab.1.right/0.0.2048.1280@0.0.2048.1280" timestamp="1593801549451" />
+    <state width="2006" height="454" key="GridCell.Tab.1.right/0.23.2048.1257@0.23.2048.1257" timestamp="1593799979613" />
     <state x="525" y="279" key="SettingsEditor" timestamp="1593606851629">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="525" y="279" key="SettingsEditor/0.0.2048.1280@0.0.2048.1280" timestamp="1593606851629" />
-    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup" timestamp="1593638116534">
+    <state x="804" y="564" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593677384094">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1593638116534" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/qusion/pintextfield/MainActivity.kt</url>
-          <line>22</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="804" y="564" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1280@0.0.2048.1280" timestamp="1593677384094" />
+    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup" timestamp="1593800281610">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1593800281610" />
   </component>
 </project>

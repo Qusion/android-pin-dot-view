@@ -4,7 +4,8 @@
     <color name="number_dial_default_text_color">#000000</color>
 
     <color name="pin_dot_view_default_idle_color">#FFFFFF</color>
-    <color name="pin_dot_view_default_active_color">#80FFFFFF</color>
+    <color name="pin_dot_view_default_current_color">#80FFFFFF</color>
+    <color name="pin_dot_view_default_passed_color">#FFFF00</color>
 
     <color name="transparent_color">#00000000</color>
 

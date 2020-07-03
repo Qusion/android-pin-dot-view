@@ -6,11 +6,13 @@ import android.graphics.Canvas
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.number_dial_view.view.*
 
 typealias OnNumberClickListener = (Int)->Unit
+typealias OnNumberRemovedListener = ()->Unit
 
 class NumberDialView @JvmOverloads constructor(
     context: Context,
@@ -31,7 +33,10 @@ class NumberDialView @JvmOverloads constructor(
     private val verticalDelimiters: List<View>
     private val horizontalDelimiters: List<View>
 
+    private var numbersEntered = 0
+
     private var mOnNumberClickListener: OnNumberClickListener? = null
+    private var mOnNumberRemovedListener: OnNumberRemovedListener? = null
 
     init {
         val a: TypedArray = if (attrs != null) {
@@ -112,9 +117,17 @@ class NumberDialView @JvmOverloads constructor(
                 textSize = mTextSize.toFloat()
                 typeface = Typeface.defaultFromStyle(mTextStyle)
                 setOnClickListener { view ->
+                    numbersEntered += 1
+                    toggleBackButton(true)
                     mOnNumberClickListener?.invoke(numbers.indexOf(view))
                 }
             }
+        }
+
+        numberDialView.bottomRightButton.setOnClickListener {
+            numbersEntered -= 1
+            if(numbersEntered == 0) toggleBackButton(false)
+            mOnNumberRemovedListener?.invoke()
         }
 
         verticalDelimiters.forEach { delimiter ->
@@ -136,9 +149,23 @@ class NumberDialView @JvmOverloads constructor(
         }
     }
 
+    private fun toggleBackButton(visible: Boolean) {
+        if(visible) {
+            bottomRightButton.visibility = View.VISIBLE
+            bottomRightIcon.visibility = View.VISIBLE
+        } else {
+            bottomRightButton.visibility = View.GONE
+            bottomRightIcon.visibility = View.GONE
+        }
+    }
+
     //region Setters
     fun setOnNumberClickListener(l: OnNumberClickListener) {
         mOnNumberClickListener = l
+    }
+
+    fun setOnNumberRemovedListener(l: OnNumberRemovedListener) {
+        mOnNumberRemovedListener = l
     }
 
     var textSize: Int

@@ -18,7 +18,9 @@
         <attr name="pinLength" format="integer" />
         <attr name="idleDotSize" format="dimension" />
         <attr name="idleDotColor" format="color" />
-        <attr name="activeDotColor" format="color" />
-        <attr name="activeDotSizeModifier" format="float" />
+        <attr name="currentDotGlareSize" format="dimension" />
+        <attr name="currentDotGlareColor" format="color" />
+        <attr name="passedDotSize" format="dimension" />
+        <attr name="passedDotColor" format="color" />
     </declare-styleable>
 </resources>

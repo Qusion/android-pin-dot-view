@@ -2,16 +2,14 @@ package com.qusion.lib_pindotview
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.number_dial_view.view.*
-import java.lang.Exception
+import android.view.animation.Animation
+import android.view.animation.Transformation
 
-typealias OnCompletedListener = (String)->Unit
+typealias OnCompletedListener = (String) -> Unit
 
 class PinDotView @JvmOverloads constructor(
     context: Context,
@@ -20,20 +18,25 @@ class PinDotView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var mPinLength = 4
-    private var mIdleDotSize = 16
+    private var mIdleDotSize = 8
     private var mIdleDotColor = 0
-    private var mActiveDotColor = 0
-    private var mActiveDotSizeModifier = 2f
+    private var mCurrentDotGlareColor = 0
+    private var mCurrentDotGlareSize = 16
+    private var mPassedDotColor = 0
+
     private var mNumberDialView: NumberDialView? = null
 
     private var mWidth = 0
     private var mHeight = 0
 
     private var mIdlePaint: Paint? = null
-    private var mActivePaint: Paint? = null
+    private var mCurrentPaint: Paint? = null
+    private var mPassedPaint: Paint? = null
 
     private var enteredNums = 0
     private var mEnteredPin = ""
+
+    var animatedAlpha = 100
 
     private var mOnCompletedListener: OnCompletedListener? = null
 
@@ -49,22 +52,39 @@ class PinDotView @JvmOverloads constructor(
         }
         try {
             mPinLength = a.getInteger(R.styleable.PinDotView_pinLength, 4)
-            mIdleDotSize = a.getDimensionPixelSize(R.styleable.PinDotView_idleDotSize, 16)
-            mIdleDotColor = a.getColor(R.styleable.PinDotView_idleDotColor, context.getColor(R.color.pin_dot_view_default_idle_color))
-            mActiveDotColor = a.getColor(R.styleable.PinDotView_activeDotColor, context.getColor(R.color.pin_dot_view_default_active_color))
-            mActiveDotSizeModifier = a.getFloat(R.styleable.PinDotView_activeDotSizeModifier, 2f)
+            mIdleDotSize = a.getDimensionPixelSize(R.styleable.PinDotView_idleDotSize, 8)
+            mIdleDotColor = a.getColor(
+                R.styleable.PinDotView_idleDotColor,
+                context.getColor(R.color.pin_dot_view_default_idle_color)
+            )
+            mCurrentDotGlareColor = a.getColor(
+                R.styleable.PinDotView_currentDotGlareColor,
+                context.getColor(R.color.pin_dot_view_default_current_color)
+            )
+            mCurrentDotGlareSize =
+                a.getDimensionPixelSize(R.styleable.PinDotView_currentDotGlareSize, 16)
+            mPassedDotColor = a.getColor(
+                R.styleable.PinDotView_passedDotColor,
+                context.getColor(R.color.pin_dot_view_default_passed_color)
+            )
         } finally {
             a.recycle()
         }
 
-        mIdlePaint = Paint()
-        mIdlePaint!!.isAntiAlias = true
-        mIdlePaint!!.color = mIdleDotColor
+        mIdlePaint = Paint().apply {
+            isAntiAlias = true
+            color = mIdleDotColor
+        }
 
-        mActivePaint = Paint()
-        mActivePaint!!.isAntiAlias = true
-        mActivePaint!!.color = mActiveDotColor
+        mCurrentPaint = Paint().apply {
+            isAntiAlias = true
+            color = mCurrentDotGlareColor
+        }
 
+        mPassedPaint = Paint().apply {
+            isAntiAlias = true
+            color = mPassedDotColor
+        }
     }
 
     override fun onAttachedToWindow() {
@@ -81,29 +101,74 @@ class PinDotView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val startCenterX = mIdleDotSize.toFloat() * mActiveDotSizeModifier
-        val endCenterX = width - mIdleDotSize.toFloat() * mActiveDotSizeModifier
-        val step = (endCenterX - startCenterX)/(mPinLength - 1)
+        val startCenterX = mCurrentDotGlareSize.toFloat()
+        val endCenterX = width - mCurrentDotGlareSize.toFloat()
+        val step = (endCenterX - startCenterX) / (mPinLength - 1)
 
+        mCurrentPaint?.alpha = animatedAlpha
         for (i in 0 until mPinLength) {
-            if(i < enteredNums) {
-                canvas.drawCircle(i * step + startCenterX, height.toFloat() / 2, mIdleDotSize * mActiveDotSizeModifier, mActivePaint!!)
+            when {
+                i == enteredNums -> {
+                    canvas.drawCircle(
+                        i * step + startCenterX,
+                        height.toFloat() / 2,
+                        mCurrentDotGlareSize.toFloat(),
+                        mCurrentPaint!!
+                    )
+                    canvas.drawCircle(
+                        i * step + startCenterX,
+                        height.toFloat() / 2,
+                        mIdleDotSize.toFloat(),
+                        mIdlePaint!!
+                    )
+                }
+                i > enteredNums -> {
+                    canvas.drawCircle(
+                        i * step + startCenterX,
+                        height.toFloat() / 2,
+                        mIdleDotSize.toFloat(),
+                        mIdlePaint!!
+                    )
+                }
+                else -> {
+                    canvas.drawCircle(
+                        i * step + startCenterX,
+                        height.toFloat() / 2,
+                        mIdleDotSize.toFloat(),
+                        mPassedPaint!!
+                    )
+                }
             }
-            canvas.drawCircle(i * step + startCenterX, height.toFloat() / 2, mIdleDotSize.toFloat(), mIdlePaint!!)
         }
     }
 
     private fun handleNumberInput() {
-        mNumberDialView!!.setOnNumberClickListener { digit ->
+        mNumberDialView?.setOnNumberClickListener { digit ->
             enteredNums += 1
             mEnteredPin = "$mEnteredPin$digit"
             if (enteredNums == mPinLength) {
                 mOnCompletedListener?.invoke(mEnteredPin)
             }
+
+            animatedAlpha = 0
+            val animation = PinDotViewAnimation(this)
+            animation.duration = 500
+            this.startAnimation(animation)
+
+            invalidate()
+        }
+        mNumberDialView?.setOnNumberRemovedListener {
+            enteredNums -= 1
+            mEnteredPin = mEnteredPin.dropLast(1)
             invalidate()
         }
     }
 
+    fun resetPin() {
+        enteredNums = 0
+        mEnteredPin = ""
+        invalidate()
+    }
 
     //region Setters
     fun setOnCompletedListener(l: OnCompletedListener) {
@@ -131,4 +196,14 @@ class PinDotView @JvmOverloads constructor(
             handleNumberInput()
         }
     //endregion
+}
+
+class PinDotViewAnimation(private val pinDotView: PinDotView) : Animation() {
+    override fun applyTransformation(
+        interpolatedTime: Float,
+        transformation: Transformation?
+    ) {
+        pinDotView.animatedAlpha = (interpolatedTime * 100).toInt()
+        pinDotView.requestLayout()
+    }
 }

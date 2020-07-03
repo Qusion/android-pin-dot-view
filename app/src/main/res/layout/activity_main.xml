@@ -7,43 +7,16 @@
     android:background="#343434"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/sizeColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="text size &amp; color"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/delimiterSizeColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="delimiter size &amp; color"
-        app:layout_constraintLeft_toRightOf="@id/sizeColor"
-        app:layout_constraintTop_toTopOf="@id/sizeColor" />
-
-
-    <Button
-        android:id="@+id/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="text style"
-        app:layout_constraintLeft_toLeftOf="@id/sizeColor"
-        app:layout_constraintTop_toBottomOf="@id/sizeColor" />
-
-
     <com.qusion.lib_pindotview.PinDotView
         android:id="@+id/pinDotView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="80dp"
-        app:activeDotColor="#20FFFF00"
+        app:currentDotGlareColor="#10FFFF00"
         app:idleDotSize="6dp"
-        app:activeDotSizeModifier="3.1"
+        app:currentDotGlareSize="16dp"
         app:pinLength="5"
         app:layout_constraintBottom_toTopOf="@id/numberDialView"
         app:layout_constraintLeft_toLeftOf="parent"
