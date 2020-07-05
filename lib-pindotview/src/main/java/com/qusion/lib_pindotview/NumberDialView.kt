@@ -159,6 +159,11 @@ class NumberDialView @JvmOverloads constructor(
         }
     }
 
+    fun clear() {
+        numbersEntered = 0
+        toggleBackButton(false)
+    }
+
     //region Setters
     fun setOnNumberClickListener(l: OnNumberClickListener) {
         mOnNumberClickListener = l

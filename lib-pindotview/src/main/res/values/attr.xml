@@ -16,6 +16,7 @@
 
     <declare-styleable name="PinDotView">
         <attr name="pinLength" format="integer" />
+        <attr name="dotSpacing" format="dimension" />
         <attr name="idleDotSize" format="dimension" />
         <attr name="idleDotColor" format="color" />
         <attr name="currentDotGlareSize" format="dimension" />

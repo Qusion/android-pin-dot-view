@@ -18,16 +18,15 @@ class PinDotView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var mPinLength = 4
+    private var mDotSpacing = -1
     private var mIdleDotSize = 8
     private var mIdleDotColor = 0
     private var mCurrentDotGlareColor = 0
     private var mCurrentDotGlareSize = 16
+
     private var mPassedDotColor = 0
 
     private var mNumberDialView: NumberDialView? = null
-
-    private var mWidth = 0
-    private var mHeight = 0
 
     private var mIdlePaint: Paint? = null
     private var mCurrentPaint: Paint? = null
@@ -52,6 +51,7 @@ class PinDotView @JvmOverloads constructor(
         }
         try {
             mPinLength = a.getInteger(R.styleable.PinDotView_pinLength, 4)
+            mDotSpacing = a.getDimensionPixelSize(R.styleable.PinDotView_dotSpacing, -1)
             mIdleDotSize = a.getDimensionPixelSize(R.styleable.PinDotView_idleDotSize, 8)
             mIdleDotColor = a.getColor(
                 R.styleable.PinDotView_idleDotColor,
@@ -63,6 +63,7 @@ class PinDotView @JvmOverloads constructor(
             )
             mCurrentDotGlareSize =
                 a.getDimensionPixelSize(R.styleable.PinDotView_currentDotGlareSize, 16)
+
             mPassedDotColor = a.getColor(
                 R.styleable.PinDotView_passedDotColor,
                 context.getColor(R.color.pin_dot_view_default_passed_color)
@@ -85,38 +86,32 @@ class PinDotView @JvmOverloads constructor(
             isAntiAlias = true
             color = mPassedDotColor
         }
+
+        if (mDotSpacing < 0) mDotSpacing = mCurrentDotGlareSize * 3
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-    }
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        mWidth = w
-        mHeight = h
-        invalidate()
+        val endCenterX = 2 * mCurrentDotGlareSize.toFloat() + (mDotSpacing * (mPinLength - 1))
+        setMeasuredDimension(endCenterX.toInt(), 2 * mCurrentDotGlareSize)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
-        val startCenterX = mCurrentDotGlareSize.toFloat()
-        val endCenterX = width - mCurrentDotGlareSize.toFloat()
-        val step = (endCenterX - startCenterX) / (mPinLength - 1)
 
         mCurrentPaint?.alpha = animatedAlpha
         for (i in 0 until mPinLength) {
             when {
                 i == enteredNums -> {
                     canvas.drawCircle(
-                        i * step + startCenterX,
+                        i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
                         height.toFloat() / 2,
                         mCurrentDotGlareSize.toFloat(),
                         mCurrentPaint!!
                     )
                     canvas.drawCircle(
-                        i * step + startCenterX,
+                        i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
                         height.toFloat() / 2,
                         mIdleDotSize.toFloat(),
                         mIdlePaint!!
@@ -124,7 +119,7 @@ class PinDotView @JvmOverloads constructor(
                 }
                 i > enteredNums -> {
                     canvas.drawCircle(
-                        i * step + startCenterX,
+                        i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
                         height.toFloat() / 2,
                         mIdleDotSize.toFloat(),
                         mIdlePaint!!
@@ -132,7 +127,7 @@ class PinDotView @JvmOverloads constructor(
                 }
                 else -> {
                     canvas.drawCircle(
-                        i * step + startCenterX,
+                        i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
                         height.toFloat() / 2,
                         mIdleDotSize.toFloat(),
                         mPassedPaint!!
@@ -167,6 +162,7 @@ class PinDotView @JvmOverloads constructor(
     fun resetPin() {
         enteredNums = 0
         mEnteredPin = ""
+        mNumberDialView?.clear()
         invalidate()
     }
 
