@@ -4,35 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#343434"
+    android:background="#000616"
     tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_qusion"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/enter_pin"
+        android:textColor="@color/default_text_color"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/pinDotView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
 
     <com.qusion.lib_pindotview.PinDotView
         android:id="@+id/pinDotView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="80dp"
-        app:currentDotGlareColor="#10FFFF00"
-        app:idleDotSize="6dp"
-        app:currentDotGlareSize="16dp"
-        app:pinLength="5"
-        app:dotSpacing="30dp"
+        android:layout_marginBottom="60dp"
+        app:currentDotGlareSize="28dp"
+        app:dotSpacing="70dp"
+        app:idleDotSize="10dp"
         app:layout_constraintBottom_toTopOf="@id/numberDialView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:pinLength="4" />
 
     <com.qusion.lib_pindotview.NumberDialView
         android:id="@+id/numberDialView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="400dp"
-        app:backgroundColor="#00000000"
-        app:delimiterColor="#A0A0A0"
         app:horizontalDelimiterWidth="1dp"
-        app:textColor="#FFFFFF"
-        app:textSize="16sp"
+        app:textSize="26sp"
         app:textStyle="bold"
         app:verticalDelimiterWidth="1dp" />
 

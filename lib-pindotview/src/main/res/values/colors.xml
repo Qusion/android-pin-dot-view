@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="default_text_color">#FFFFFF</color>
+
+    <color name="number_dial_view_delimiter_color">#3D3A4F</color>
+    <color name="number_dial_view_biometrics_color">#00F0FF</color>
+
     <color name="pin_textfield_colorPrimary">#008577</color>
     <color name="number_dial_default_text_color">#000000</color>
 
     <color name="pin_dot_view_default_idle_color">#FFFFFF</color>
-    <color name="pin_dot_view_default_current_color">#80FFFFFF</color>
-    <color name="pin_dot_view_default_passed_color">#FFFF00</color>
+    <color name="pin_dot_view_default_current_color">#3300F0FF</color>
+    <color name="pin_dot_view_default_passed_color">#00F0FF</color>
 
     <color name="transparent_color">#00000000</color>
 
-
-    <color name="test_color_1">#FFF453</color>
-    <color name="test_color_2">#45FA89</color>
-
+    <color name="pin_view_idle_color">#FFFFFF</color>
+    <color name="pin_view_active_color">#00FFFF</color>
 </resources>

@@ -10,6 +10,7 @@
         </attr>
         <attr name="backgroundColor" format="color" />
         <attr name="delimiterColor" format="color" />
+        <attr name="biometricsTint" format="color" />
         <attr name="verticalDelimiterWidth" format="dimension" />
         <attr name="horizontalDelimiterWidth" format="dimension" />
     </declare-styleable>
@@ -23,5 +24,13 @@
         <attr name="currentDotGlareColor" format="color" />
         <attr name="passedDotSize" format="dimension" />
         <attr name="passedDotColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="PinView">
+        <attr name="pinLength" />
+        <attr name="textColor" />
+        <attr name="idleColor" format="color" />
+        <attr name="activeColor" format="color" />
+        <attr name="digitSpacing" format="dimension" />
     </declare-styleable>
 </resources>

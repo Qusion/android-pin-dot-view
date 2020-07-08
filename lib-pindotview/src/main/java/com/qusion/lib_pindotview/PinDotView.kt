@@ -154,8 +154,11 @@ class PinDotView @JvmOverloads constructor(
         }
         mNumberDialView?.setOnNumberRemovedListener {
             enteredNums -= 1
-            mEnteredPin = mEnteredPin.dropLast(1)
             invalidate()
+            if(enteredNums == 0) {
+                mNumberDialView?.clear()
+            }
+            mEnteredPin = mEnteredPin.dropLast(1)
         }
     }
 

@@ -133,11 +133,22 @@
     <!-- End: Numbers-->
 
     <ImageView
-        android:id="@+id/bottomRightIcon"
+        android:id="@+id/bottomRighBackIcon"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:src="@drawable/ic_back"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/vertical_two"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_three" />
+
+    <ImageView
+        android:id="@+id/bottomRightBiometricsIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_biometrics"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/vertical_two"
         app:layout_constraintRight_toRightOf="parent"
@@ -148,7 +159,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="?android:attr/selectableItemBackground"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/vertical_two"
         app:layout_constraintRight_toRightOf="parent"
