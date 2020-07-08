@@ -93,7 +93,7 @@ pinView.setOnCompletedListener { pin ->
 ## License
 ```
 MIT License
-Copyright (c) 2019 QusionDev
+Copyright (c) 2020 QusionDev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
