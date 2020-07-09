@@ -28,7 +28,7 @@
 ## Usage
 ### Implementation
 `dependencies {
-    implementation 'com.github.QusionDev:android-pin-dot-view:x.x.x'
+    implementation 'com.github.Qusion:android-pin-dot-view:0.0.1'
 }`
 
 ### Layout
@@ -59,7 +59,7 @@ supports `pinLength`, `dotSpacing`, `idleDotSize`, `idleDotColor`, `currentDotGl
         app:textStyle="bold"
         app:verticalDelimiterWidth="1dp" />
 ```
-supports `textSize`, `textColor`, `textStyle`, `backgroundColor`, `delimiterColor`, `biometricsTint`, `verticalDelimiterWidth`, `horizontalDelimiterWidth` params
+supports `textSize`, `textColor`, `textStyle`, `backgroundColor`, `delimiterColor`, `bottomLeftButtonText`, `bottomRightButtonSrc`, `bottomRightButtonTint`, `verticalDelimiterWidth`, `horizontalDelimiterWidth` params
 
 ``` 
 <com.qusion.lib_pindotview.PinView
