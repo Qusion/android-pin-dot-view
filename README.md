@@ -1,17 +1,20 @@
-# Android-PinDotView
+<p>
+<img align="left" width="400" height="400" src="demo.gif" alt="demo" />
+<p><h1 align="left">Android-PinDotView</h1></p>
+Set of views to speed up creating custom PIN screen in your app
+</p>
 
-Custom views to speed up creating custom PIN screen in your app
-
-## Demo
-### NumberDialView & PinDotView
+<p align="left">
+<h2> Demo </h2>
+<h3> NumberDialView & PinDotView </h3>
 
 <img src="screen-1.png" alt="screen-1" width="320" height="640">
-
-<img src="demo.gif" alt="screen-2" >
-
-### PinView
+<h3> PinView </h3>
 
 <img src="screen-2.png" alt="screen-2" width="320" height="640">
+
+</p>
+
 
 ## Features
 - Easy to implement
