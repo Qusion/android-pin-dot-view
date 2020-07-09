@@ -23,8 +23,12 @@ class MainActivity : AppCompatActivity() {
             pinDotView.resetPin()
         }
 
-        numberDialView.setOnBiometricsClickedListener {
+        numberDialView.setOnRightButtonClickedListener {
             Snackbar.make(pinDotView, "BIOMETRICS", Snackbar.LENGTH_SHORT).show()
+        }
+
+        numberDialView.setOnLeftButtonClickedListener {
+            Snackbar.make(pinDotView, "FORGOT?", Snackbar.LENGTH_SHORT).show()
         }
     }
 }

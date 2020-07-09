@@ -2,19 +2,20 @@ package com.qusion.lib_pindotview
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.number_dial_view.view.*
 
-typealias OnNumberClickListener = (Int)->Unit
-typealias OnNumberRemovedListener = ()->Unit
-typealias OnBiometricsClickedListener = ()->Unit
+typealias OnNumberClickListener = (Int) -> Unit
+typealias OnNumberRemovedListener = () -> Unit
+typealias OnRightButtonClickedListener = () -> Unit
+typealias OnLeftButtonClickedListener = () -> Unit
 
 class NumberDialView @JvmOverloads constructor(
     context: Context,
@@ -27,9 +28,11 @@ class NumberDialView @JvmOverloads constructor(
     private var mTextStyle = 0
     private var mBackgroundColor = 0
     private var mDelimiterColor = 0
-    private var mBiometricsTintColor = 0
     private var mVerticalDelimiterWidth = 0
     private var mHorizontalDelimiterWidth = 0
+    private var mBottomLeftButtonText: String? = null
+    private var mBottomRightButtonSrc: Drawable? = null
+    private var mBottomRightButtonTint = 0
 
     private val numberDialView: View
     private val numbers: List<TextView>
@@ -41,7 +44,8 @@ class NumberDialView @JvmOverloads constructor(
 
     private var mOnNumberClickListener: OnNumberClickListener? = null
     private var mOnNumberRemovedListener: OnNumberRemovedListener? = null
-    private var mOnBiometricsClickedListener: OnBiometricsClickedListener? = null
+    private var mOnLeftButtonClickedListener: OnRightButtonClickedListener? = null
+    private var mOnRightButtonClickedListener: OnRightButtonClickedListener? = null
 
     init {
         val a: TypedArray = if (attrs != null) {
@@ -68,12 +72,16 @@ class NumberDialView @JvmOverloads constructor(
                 R.styleable.NumberDial_delimiterColor,
                 context.getColor(R.color.number_dial_view_delimiter_color)
             )
-            mBiometricsTintColor = a.getColor(
-                R.styleable.NumberDial_biometricsTint,
+            mVerticalDelimiterWidth =
+                a.getDimensionPixelSize(R.styleable.NumberDial_verticalDelimiterWidth, 1)
+            mHorizontalDelimiterWidth =
+                a.getDimensionPixelSize(R.styleable.NumberDial_horizontalDelimiterWidth, 1)
+            mBottomLeftButtonText = a.getString(R.styleable.NumberDial_bottomLeftButtonText)
+            mBottomRightButtonSrc = a.getDrawable(R.styleable.NumberDial_bottomRightButtonSrc)
+            mBottomRightButtonTint = a.getColor(
+                R.styleable.NumberDial_bottomRightButtonTint,
                 context.getColor(R.color.number_dial_view_biometrics_color)
             )
-            mVerticalDelimiterWidth = a.getDimensionPixelSize(R.styleable.NumberDial_verticalDelimiterWidth, 1)
-            mHorizontalDelimiterWidth = a.getDimensionPixelSize(R.styleable.NumberDial_horizontalDelimiterWidth, 1)
 
         } finally {
             a.recycle()
@@ -91,7 +99,8 @@ class NumberDialView @JvmOverloads constructor(
             numberDialView.six,
             numberDialView.seven,
             numberDialView.eight,
-            numberDialView.nine)
+            numberDialView.nine
+        )
 
         verticalDelimiters = listOf(
             numberDialView.vertical_one,
@@ -112,15 +121,10 @@ class NumberDialView @JvmOverloads constructor(
         invalidate()
     }
 
-    override fun dispatchDraw(canvas: Canvas?) {
-        super.dispatchDraw(canvas)
-        updateView()
-    }
-
     private fun updateView() {
         numberDialView.container.setBackgroundColor(mBackgroundColor)
 
-        numbers.forEach {number ->
+        numbers.forEach { number ->
             number.apply {
                 setTextColor(mTextColor)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
@@ -133,16 +137,26 @@ class NumberDialView @JvmOverloads constructor(
             }
         }
 
-        numberDialView.bottomRightBiometricsIcon.setColorFilter(mBiometricsTintColor)
+        numberDialView.bottomLeftText.text =
+            mBottomLeftButtonText ?: context.getText(R.string.bottom_left_button_string)
+
+        numberDialView.bottomRightBiometricsIcon.apply {
+            setImageDrawable(mBottomRightButtonSrc ?: context.getDrawable(R.drawable.ic_biometrics))
+            setColorFilter(mBottomRightButtonTint)
+        }
 
         numberDialView.bottomRightButton.setOnClickListener {
-            if(backVisible) {
+            if (backVisible) {
                 numbersEntered -= 1
-                if(numbersEntered == 0) toggleBackButton(false)
+                if (numbersEntered == 0) toggleBackButton(false)
                 mOnNumberRemovedListener?.invoke()
             } else {
-                mOnBiometricsClickedListener?.invoke()
+                mOnRightButtonClickedListener?.invoke()
             }
+        }
+
+        numberDialView.bottomLeftButton.setOnClickListener {
+            mOnLeftButtonClickedListener?.invoke()
         }
 
         verticalDelimiters.forEach { delimiter ->
@@ -162,10 +176,11 @@ class NumberDialView @JvmOverloads constructor(
                 setBackgroundColor(mDelimiterColor)
             }
         }
+        invalidate()
     }
 
     private fun toggleBackButton(visible: Boolean) {
-        if(visible) {
+        if (visible) {
             backVisible = true
             bottomRightBiometricsIcon.visibility = View.GONE
             bottomRighBackIcon.visibility = View.VISIBLE
@@ -184,40 +199,48 @@ class NumberDialView @JvmOverloads constructor(
     //region Setters
     fun setOnNumberClickListener(l: OnNumberClickListener) {
         mOnNumberClickListener = l
+        updateView()
     }
 
     fun setOnNumberRemovedListener(l: OnNumberRemovedListener) {
         mOnNumberRemovedListener = l
+        updateView()
     }
 
-    fun setOnBiometricsClickedListener(l: OnBiometricsClickedListener) {
-        mOnBiometricsClickedListener = l
+    fun setOnLeftButtonClickedListener(l: OnLeftButtonClickedListener) {
+        mOnLeftButtonClickedListener = l
+        updateView()
+    }
+
+    fun setOnRightButtonClickedListener(l: OnRightButtonClickedListener) {
+        mOnRightButtonClickedListener = l
+        updateView()
     }
 
     var textSize: Int
         get() = mTextSize
         set(textSize) {
             this.mTextSize = textSize
-            invalidate()
+            updateView()
         }
 
     var textColor: Int
         get() = mTextColor
         set(textColor) {
             this.mTextColor = textColor
-            invalidate()
+            updateView()
         }
 
     var textStyle: Int
         get() = mTextStyle
         set(textStyle) {
             this.mTextStyle = textStyle
-            invalidate()
+            updateView()
         }
 
     override fun setBackgroundColor(mBackgroundColor: Int) {
         this.mBackgroundColor = mBackgroundColor
-        invalidate()
+        updateView()
     }
 
     fun getBackgroundColor(): Int {
@@ -228,18 +251,42 @@ class NumberDialView @JvmOverloads constructor(
         get() = mDelimiterColor
         set(delimiterColor) {
             this.mDelimiterColor = delimiterColor
+            updateView()
         }
 
     var verticalDelimiterWidth: Int
         get() = mVerticalDelimiterWidth
         set(verticalDelimiterWidth) {
             this.mVerticalDelimiterWidth = verticalDelimiterWidth
+            updateView()
         }
 
     var horizontalDelimiterWidth: Int
         get() = mHorizontalDelimiterWidth
         set(horizontalDelimiterWidth) {
             this.mHorizontalDelimiterWidth = horizontalDelimiterWidth
+            updateView()
+        }
+
+    var bottomLeftButtonText: String
+        get() = mBottomLeftButtonText ?: ""
+        set(bottomLeftButtonText) {
+            this.mBottomLeftButtonText = bottomLeftButtonText
+            updateView()
+        }
+
+    var bottomRightButtonSrc: Drawable?
+        get() = mBottomRightButtonSrc
+        set(bottomRightButtonSrc) {
+            this.mBottomRightButtonSrc = bottomRightButtonSrc
+            updateView()
+        }
+
+    var bottomRightButtonTint: Int
+        get() = mBottomRightButtonTint
+        set(bottomRightButtonTint) {
+            this.mBottomRightButtonTint = bottomRightButtonTint
+            updateView()
         }
     //endregion
 }

@@ -2,6 +2,7 @@ package com.qusion.lib_pindotview
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.BlendMode
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
@@ -29,13 +30,14 @@ class PinDotView @JvmOverloads constructor(
     private var mNumberDialView: NumberDialView? = null
 
     private var mIdlePaint: Paint? = null
-    private var mCurrentPaint: Paint? = null
+    private var mCurrentGlarePaint: Paint? = null
+    private var mPassedGlarePaint: Paint? = null
     private var mPassedPaint: Paint? = null
 
     private var enteredNums = 0
     private var mEnteredPin = ""
 
-    var animatedAlpha = 100
+    var animatedAlpha = 20
 
     private var mOnCompletedListener: OnCompletedListener? = null
 
@@ -77,9 +79,16 @@ class PinDotView @JvmOverloads constructor(
             color = mIdleDotColor
         }
 
-        mCurrentPaint = Paint().apply {
+        mCurrentGlarePaint = Paint().apply {
             isAntiAlias = true
             color = mCurrentDotGlareColor
+            alpha = 30
+        }
+
+        mPassedGlarePaint = Paint().apply {
+            isAntiAlias = true
+            color = mCurrentDotGlareColor
+            alpha = 5
         }
 
         mPassedPaint = Paint().apply {
@@ -100,7 +109,7 @@ class PinDotView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        mCurrentPaint?.alpha = animatedAlpha
+        mCurrentGlarePaint?.alpha = animatedAlpha
         for (i in 0 until mPinLength) {
             when {
                 i == enteredNums -> {
@@ -108,7 +117,7 @@ class PinDotView @JvmOverloads constructor(
                         i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
                         height.toFloat() / 2,
                         mCurrentDotGlareSize.toFloat(),
-                        mCurrentPaint!!
+                        mCurrentGlarePaint!!
                     )
                     canvas.drawCircle(
                         i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
@@ -126,6 +135,12 @@ class PinDotView @JvmOverloads constructor(
                     )
                 }
                 else -> {
+                    canvas.drawCircle(
+                        i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
+                        height.toFloat() / 2,
+                        mCurrentDotGlareSize.toFloat(),
+                        mPassedGlarePaint!!
+                    )
                     canvas.drawCircle(
                         i * mDotSpacing + mCurrentDotGlareSize.toFloat(),
                         height.toFloat() / 2,
@@ -202,7 +217,7 @@ class PinDotViewAnimation(private val pinDotView: PinDotView) : Animation() {
         interpolatedTime: Float,
         transformation: Transformation?
     ) {
-        pinDotView.animatedAlpha = (interpolatedTime * 100).toInt()
+        pinDotView.animatedAlpha = (interpolatedTime * 30).toInt()
         pinDotView.requestLayout()
     }
 }

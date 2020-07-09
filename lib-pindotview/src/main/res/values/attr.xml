@@ -10,9 +10,11 @@
         </attr>
         <attr name="backgroundColor" format="color" />
         <attr name="delimiterColor" format="color" />
-        <attr name="biometricsTint" format="color" />
         <attr name="verticalDelimiterWidth" format="dimension" />
         <attr name="horizontalDelimiterWidth" format="dimension" />
+        <attr name="bottomRightButtonTint" format="color" />
+        <attr name="bottomRightButtonSrc" format="reference" />
+        <attr name="bottomLeftButtonText" format="string" />
     </declare-styleable>
 
     <declare-styleable name="PinDotView">
