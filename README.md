@@ -1,19 +1,31 @@
 <p>
 <img align="left" width="400" height="400" src="demo.gif" alt="demo" />
 <p><h1 align="left">Android-PinDotView</h1></p>
-Set of views to speed up creating custom PIN screen in your app
+<p>Set of views to speed up creating custom PIN screen in your app </p>
 </p>
 
-<p align="left">
-<h2> Demo </h2>
-<h3> NumberDialView & PinDotView </h3>
+</br></br></br></br></br></br></br></br></br></br></br></br>
 
-<img src="screen-1.png" alt="screen-1" width="320" height="640">
-<h3> PinView </h3>
-
-<img src="screen-2.png" alt="screen-2" width="320" height="640">
-
-</p>
+## Demo
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <th width="600px"><h3> NumberDialView & PinDotView </h3></th>
+        <th width="600px"><h3> PinView </h3></th>
+    </tr>
+    <tr>
+        <th width="600px"><img src="screen-1.png" alt="screen-1" width="320" height="640" align="center" /></th>
+        <th width="600px"><img src="screen-2.png" alt="screen-2" width="320" height="640" align="center" /></th>
+    </tr>
+    <tr>
+        <th width="600px">
+            <p align="left">Views designed to work together. Define them in your XML, connect them in code and register callbacks for the finished PIN, bottom left and right buttons. That's it!</p>
+            <p align="left">Both views are fully customizable. Text styles, colors, sizes, icons, you name it.</p>
+        </th>
+        <th width="600px">
+            <p>For entering pin codes that are visible.</p>
+            <p>You can either use NumberDialView for input or just use Android default soft input</p>
+        </th>
+</table>
 
 
 ## Features
