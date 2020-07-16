@@ -1,17 +1,23 @@
-# Android-PinDotView
+<p>
+<img align="left" width="400" height="400" src="demo.gif" alt="demo" />
+<p><h1 align="left">Android-PinDotView</h1></p>
+<p>Set of views to speed up creating custom PIN screen in your app </p>
+</p>
 
-Custom views to speed up creating custom PIN screen in your app
+</br></br></br></br></br></br></br></br></br></br></br></br>
 
 ## Demo
-### NumberDialView & PinDotView
+<table cellspacing="0" cellpadding="0" >
+    <tr>
+        <th width="700px" bgcolor="transparent"><h3> NumberDialView & PinDotView </h3></th>
+        <th width="700px"><h3> PinView </h3></th>
+    </tr>
+    <tr>
+        <th width="700px"><img src="screen-1.png" alt="screen-1" width="320" height="640" align="center" /></th>
+        <th width="700px"><img src="screen-2.png" alt="screen-2" width="320" height="640" align="center" /></th>
+    </tr>
+</table>
 
-<img src="screen-1.png" alt="screen-1" width="320" height="640">
-
-<img src="demo.gif" alt="screen-2" >
-
-### PinView
-
-<img src="screen-2.png" alt="screen-2" width="320" height="640">
 
 ## Features
 - Easy to implement
@@ -22,7 +28,7 @@ Custom views to speed up creating custom PIN screen in your app
 ## Usage
 ### Implementation
 `dependencies {
-    implementation 'com.github.QusionDev:android-pin-dot-view:x.x.x'
+    implementation 'com.github.Qusion:android-pin-dot-view:0.0.1'
 }`
 
 ### Layout
@@ -53,7 +59,7 @@ supports `pinLength`, `dotSpacing`, `idleDotSize`, `idleDotColor`, `currentDotGl
         app:textStyle="bold"
         app:verticalDelimiterWidth="1dp" />
 ```
-supports `textSize`, `textColor`, `textStyle`, `backgroundColor`, `delimiterColor`, `biometricsTint`, `verticalDelimiterWidth`, `horizontalDelimiterWidth` params
+supports `textSize`, `textColor`, `textStyle`, `backgroundColor`, `delimiterColor`, `bottomLeftButtonText`, `bottomRightButtonSrc`, `bottomRightButtonTint`, `verticalDelimiterWidth`, `horizontalDelimiterWidth` params
 
 ``` 
 <com.qusion.lib_pindotview.PinView

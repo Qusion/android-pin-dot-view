@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.qusion.pindotview.R
-
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,18 +17,16 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        pinDotView.numberDialView = numberDialView
         pinDotView.setOnCompletedListener { pin ->
             Snackbar.make(pinDotView, pin, Snackbar.LENGTH_SHORT).show()
-            pinDotView.resetPin()
         }
 
-        numberDialView.setOnRightButtonClickedListener {
+        pinDotView.setOnBiometricsButtonClickedListener {
             Snackbar.make(pinDotView, "BIOMETRICS", Snackbar.LENGTH_SHORT).show()
         }
 
-        numberDialView.setOnLeftButtonClickedListener {
-            Snackbar.make(pinDotView, "FORGOT?", Snackbar.LENGTH_SHORT).show()
+        pinDotView.setOnForgotButtonClickedListener {
+            Snackbar.make(pinDotView, "FORGOT", Snackbar.LENGTH_SHORT).show()
         }
     }
 }

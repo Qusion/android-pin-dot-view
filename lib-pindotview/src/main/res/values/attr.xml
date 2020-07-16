@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="NumberDial">
-        <attr name="textSize" format="dimension" />
-        <attr name="textColor" format="color" />
-        <attr name="textStyle">
-            <flag name="normal" value="0" />
-            <flag name="bold" value="1" />
-            <flag name="italic" value="2" />
-        </attr>
-        <attr name="backgroundColor" format="color" />
-        <attr name="delimiterColor" format="color" />
-        <attr name="verticalDelimiterWidth" format="dimension" />
-        <attr name="horizontalDelimiterWidth" format="dimension" />
-        <attr name="bottomRightButtonTint" format="color" />
-        <attr name="bottomRightButtonSrc" format="reference" />
-        <attr name="bottomLeftButtonText" format="string" />
-    </declare-styleable>
-
     <declare-styleable name="PinDotView">
-        <attr name="pinLength" format="integer" />
-        <attr name="dotSpacing" format="dimension" />
-        <attr name="idleDotSize" format="dimension" />
-        <attr name="idleDotColor" format="color" />
-        <attr name="currentDotGlareSize" format="dimension" />
-        <attr name="currentDotGlareColor" format="color" />
-        <attr name="passedDotSize" format="dimension" />
-        <attr name="passedDotColor" format="color" />
+        <attr name="biometrics_button_src" format="reference" />
+        <attr name="back_button_src" format="reference" />
+        <attr name="forgot_button_text" format="string" />
+        <attr name="pin_length" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="PinView">
-        <attr name="pinLength" />
-        <attr name="textColor" />
-        <attr name="idleColor" format="color" />
-        <attr name="activeColor" format="color" />
-        <attr name="digitSpacing" format="dimension" />
+        <attr name="biometrics_button_src" />
+        <attr name="back_button_src" />
+        <attr name="forgot_button_text" />
+        <attr name="pin_length" />
     </declare-styleable>
 </resources>
