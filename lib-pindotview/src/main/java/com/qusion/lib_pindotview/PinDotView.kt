@@ -27,8 +27,23 @@ class PinDotView @JvmOverloads constructor(
     private var enteredNums = 0
     private var mEnteredPin = ""
 
-
     var animatedAlpha = 20
+    var animatedX = 0f
+
+    private val alphaAnim by lazy {
+        PinDotViewAlphaAnimation(this).apply {
+            duration = 500
+        }
+    }
+
+    private val errorAnim by lazy {
+        PinDotViewErrorAnimation(this, 10 * resources.displayMetrics.density).apply {
+            duration = 70
+            repeatCount = 5
+            repeatMode = Animation.REVERSE
+        }
+    }
+
     private var mOnCompletedListener: OnCompletedListener? = null
 
     init {
@@ -94,7 +109,7 @@ class PinDotView @JvmOverloads constructor(
 
         val density = resources.displayMetrics.density
         val dotSpacing = ((width - paddingStart - paddingEnd) / (2 * (mPinLength - 1))).toFloat()
-        val startX = (width / 2) - (((mPinLength - 1) * dotSpacing)) / 2
+        val startX = ((width / 2) - (((mPinLength - 1) * dotSpacing)) / 2) + animatedX
         mCurrentGlarePaint?.alpha = animatedAlpha
         for (i in 0 until mPinLength) {
             when {
@@ -147,25 +162,42 @@ class PinDotView @JvmOverloads constructor(
         }
 
         animatedAlpha = 0
-        val animation = PinDotViewAnimation(this)
-        animation.duration = 500
-        this.startAnimation(animation)
+        errorAnim.cancel()
+        this.startAnimation(alphaAnim)
 
         invalidate()
     }
 
     private fun digitRemoved() {
         if (backVisible) {
-            resetPin()
+            clearPin()
         } else {
             mOnBiometricsButtonClickedListener?.invoke()
         }
     }
 
-    fun resetPin() {
+    fun clearPin() {
         enteredNums = 0
         mEnteredPin = ""
         toggleBackButton(false)
+        invalidate()
+    }
+
+    fun showErrorAnimation(clearPin: Boolean = false) {
+        if (clearPin) clearPin()
+        if (!alphaAnim.hasEnded()) {
+            alphaAnim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {}
+                override fun onAnimationRepeat(animation: Animation?) {}
+                override fun onAnimationEnd(animation: Animation?) {
+                    startAnimation(errorAnim)
+                    alphaAnim.setAnimationListener(null)
+                }
+            })
+        } else {
+            startAnimation(errorAnim)
+        }
+
         invalidate()
     }
 
@@ -174,17 +206,25 @@ class PinDotView @JvmOverloads constructor(
     }
 
     companion object {
-        private const val IDLE_DOT_SIZE = 6f
-        private const val GLARE_SIZE = 18f
+        private const val IDLE_DOT_SIZE = 8f
+        private const val GLARE_SIZE = 22f
     }
 }
 
-class PinDotViewAnimation(private val pinDotView: PinDotView) : Animation() {
-    override fun applyTransformation(
-        interpolatedTime: Float,
-        transformation: Transformation?
-    ) {
+class PinDotViewAlphaAnimation(private val pinDotView: PinDotView) : Animation() {
+    override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
         pinDotView.animatedAlpha = (interpolatedTime * 30).toInt()
+        pinDotView.requestLayout()
+    }
+}
+
+class PinDotViewErrorAnimation(
+    private val pinDotView: PinDotView,
+    private val animationSize: Float
+) : Animation() {
+    override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
+        pinDotView.animatedX = interpolatedTime * animationSize - animationSize / 2
+        if (hasEnded()) pinDotView.animatedX = 0f
         pinDotView.requestLayout()
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.qusion.pindotview.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,13 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         pinDotView.setOnCompletedListener { pin ->
-            Snackbar.make(pinDotView, pin, Snackbar.LENGTH_SHORT).show()
+            GlobalScope.launch {
+                delay(1000)
+                withContext(Dispatchers.Main) {
+                    pinDotView.showErrorAnimation(true)
+                }
+            }
+            //Snackbar.make(pinDotView, pin, Snackbar.LENGTH_SHORT).show()
         }
 
         pinDotView.setOnBiometricsButtonClickedListener {
