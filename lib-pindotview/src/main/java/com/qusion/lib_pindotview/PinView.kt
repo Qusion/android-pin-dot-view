@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Typeface
 import android.util.AttributeSet
 import kotlinx.android.synthetic.main.number_dial_view.view.*
 
@@ -81,7 +82,7 @@ class PinView @JvmOverloads constructor(
                 mText = mEnteredPin.padEnd(mPinLength, '*')
             }
             mEnteredPin.length == mPinLength -> {
-                if(!callbackSent) {
+                if (!callbackSent) {
                     callbackSent = true
                     mOnCompletedListener?.invoke(mEnteredPin)
                 }
@@ -97,14 +98,14 @@ class PinView @JvmOverloads constructor(
         val mLineSpacing = LINE_SPACING * density
 
         var startX =
-            (availableWidth / 2) - (mPinLength * mCharSize + (mPinLength - 1) * mDigitSpacing) / 2
+            ((availableWidth / 2) - (mPinLength * mCharSize + (mPinLength - 1) * mDigitSpacing) / 2) - mCharSize / 2
 
         for (i in 0 until mPinLength) {
             if (mEnteredPin.length >= i) {
                 canvas.drawLine(
                     startX,
                     mCharSize + mLineSpacing,
-                    startX + mCharSize,
+                    startX + 2 * mCharSize,
                     mCharSize + mLineSpacing,
                     mActivePaint
                 )
@@ -112,13 +113,13 @@ class PinView @JvmOverloads constructor(
                 canvas.drawLine(
                     startX,
                     mCharSize + mLineSpacing,
-                    startX + mCharSize,
+                    startX + 2 * mCharSize,
                     mCharSize + mLineSpacing,
                     mIdlePaint
                 )
             }
 
-            val middle = startX + (mCharSize / 4)
+            val middle = startX + (3 * mCharSize / 4)
             canvas.drawText(
                 mText,
                 i,
@@ -129,6 +130,8 @@ class PinView @JvmOverloads constructor(
                     isAntiAlias = true
                     color = context.themeColor(R.attr.colorOnSurface)
                     textSize = CHAR_SIZE * density
+                    typeface = Typeface.DEFAULT_BOLD
+                    alpha = if(i > mEnteredNums) 32 else 255
                 }
             )
 
@@ -166,8 +169,8 @@ class PinView @JvmOverloads constructor(
 
     companion object {
         private const val LINE_STROKE_WIDTH = 4f
-        private const val DIGIT_SPACING = 16f
+        private const val DIGIT_SPACING = 40f
         private const val CHAR_SIZE = 24f
-        private const val LINE_SPACING = 12f
+        private const val LINE_SPACING = 16f
     }
 }
