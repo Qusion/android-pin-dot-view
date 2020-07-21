@@ -1,3 +1,4 @@
+<img src="banner.png" alt="demo" />
 <p>
 <img align="left" width="400" height="400" src="demo.gif" alt="demo" />
 <p><h1 align="left">Android-PinDotView</h1></p>
@@ -9,12 +10,12 @@
 ## Demo
 <table cellspacing="0" cellpadding="0" >
     <tr>
-        <th width="700px" bgcolor="transparent"><h3> NumberDialView & PinDotView </h3></th>
-        <th width="700px"><h3> PinView </h3></th>
+        <th width="700px" bgcolor="transparent"><h3>PinDotView</h3></th>
+        <th width="700px"><h3>PinView</h3></th>
     </tr>
     <tr>
-        <th width="700px"><img src="screen-1.png" alt="screen-1" width="320" height="640" align="center" /></th>
-        <th width="700px"><img src="screen-2.png" alt="screen-2" width="320" height="640" align="center" /></th>
+        <th width="700px"><img src="screen-1.png" alt="screen-1" width="450" height="450" align="center" /></th>
+        <th width="700px"><img src="screen-2.png" alt="screen-2" width="450" height="450" align="center" /></th>
     </tr>
 </table>
 
@@ -22,8 +23,7 @@
 ## Features
 - Easy to implement
 - Exposing only necessary callbacks for ease of use
-- Views work together out of the box
-- Highly customizable
+- Customizable using themes
 
 ## Usage
 ### Implementation
@@ -34,66 +34,56 @@
 ### Layout
 ```
 <com.qusion.lib_pindotview.PinDotView
-        android:id="@+id/pinDotView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        app:currentDotGlareSize="28dp"
-        app:dotSpacing="70dp"
-        app:idleDotSize="10dp"
-        app:layout_constraintBottom_toTopOf="@id/numberDialView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:pinLength="4" />
+    android:id="@+id/pinDotView"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:pin_length="4"
+    android:theme="@style/Widget.NumberDialView"
+    app:layout_constraintTop_toBottomOf="@id/center_guideline"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent" />
 ```
-supports `pinLength`, `dotSpacing`, `idleDotSize`, `idleDotColor`, `currentDotGlareSize`, `currentDotGlareColor`, `passedDotSize`, `passedDotColor` params
+supports `biometrics_button_src`, `back_button_src`, `forgot_button_text`, `pin_length` params
  
 ```
-<com.qusion.lib_pindotview.NumberDialView
-        android:id="@+id/numberDialView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="400dp"
-        app:horizontalDelimiterWidth="1dp"
-        app:textSize="26sp"
-        app:textStyle="bold"
-        app:verticalDelimiterWidth="1dp" />
-```
-supports `textSize`, `textColor`, `textStyle`, `backgroundColor`, `delimiterColor`, `bottomLeftButtonText`, `bottomRightButtonSrc`, `bottomRightButtonTint`, `verticalDelimiterWidth`, `horizontalDelimiterWidth` params
-
-``` 
 <com.qusion.lib_pindotview.PinView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/numberDialView"
-        app:pinLength="4"
-        android:textSize="28sp"
-        android:layout_marginBottom="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        app:digitSpacing="40dp" />
+    android:id="@+id/pinView"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:pin_length="4"
+    android:theme="@style/Widget.NumberDialView"
+    app:layout_constraintTop_toBottomOf="@id/center_guideline"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent" />
 ```
-supports `pinLength`, `textColor`, `idleColor`, `activeColor`, `digitSpacing` params
+supports `biometrics_button_src`, `back_button_src`, `forgot_button_text`, `pin_length` params
+
 
 ### Activity | Fragment
 ```
-pinDotView.numberDialView = numberDialView
-pinDotView.setOnCompletedListener { pin ->
-    // returns completed PIN code
+pinDotView.setOnCompletedListener { pin ->  
+    // In case of incorrect pin we can show error animation when using PinDotView
+    // clearPin gives you the option to reset on error
+    // pinDotView.showErrorAnimation(clearPin = true)
 }
-numberDialView.setOnBiometricsClickedListener {
+
+pinDotView.setOnBiometricsButtonClickedListener {
     // Biometrics button clicked
+}
+
+pinDotView.setOnForgotButtonClickedListener {
+    // Forgot button clicked
 }
 ```
 
+
+### Styling
 ```
-// Can be used with soft input -> don't assign NumberDialView here and be sure to specify inputType in XML
-pinView.numberDialView = numberDialView
-pinView.setOnCompletedListener { pin ->
-    // returns completed PIN code
-}
+<style name="ThemeOverlay.PinDotView" parent="">
+    <item name="colorPrimary">@color/color_aqua</item> // Tints biometric icon and active elements of pin input
+    <item name="colorOnSurface">@color/color_white</item> // Changes color of idle elements of pin input and keyboard delimiters 
+    // + regular text styling
+</style>
 ```
 
 ## License
