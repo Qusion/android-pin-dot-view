@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 delay(1000)
                 withContext(Dispatchers.Main) {
-                    pinDotView.showErrorAnimation(true)
+                    pinDotView.showErrorAnimation(clearPin = true)
                 }
             }
             //Snackbar.make(pinDotView, pin, Snackbar.LENGTH_SHORT).show()

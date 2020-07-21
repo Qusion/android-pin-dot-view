@@ -10,7 +10,7 @@
         <item name="android:textColor">@color/color_white</item>
     </style>
 
-    <style name="Widget.NumberDialView" parent="">
+    <style name="ThemeOverlay.PinDotView" parent="">
         <item name="android:textSize">28sp</item>
         <item name="android:textStyle">bold</item>
     </style>
