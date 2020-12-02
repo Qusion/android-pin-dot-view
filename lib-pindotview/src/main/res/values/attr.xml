@@ -10,6 +10,8 @@
         </attr>
         <attr name="backgroundColor" format="color" />
         <attr name="delimiterColor" format="color" />
+        <attr name="hasGrids" format="boolean" />
+        <attr name="hasForget" format="boolean" />
         <attr name="verticalDelimiterWidth" format="dimension" />
         <attr name="horizontalDelimiterWidth" format="dimension" />
         <attr name="bottomRightButtonTint" format="color" />

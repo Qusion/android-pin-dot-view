@@ -2,13 +2,14 @@ package com.qusion.lib_pindotview
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.number_dial_view.view.*
 
@@ -33,6 +34,9 @@ class NumberDialView @JvmOverloads constructor(
     private var mBottomLeftButtonText: String? = null
     private var mBottomRightButtonSrc: Drawable? = null
     private var mBottomRightButtonTint = 0
+
+    private var mHasGrids = true
+    private var mHasForget = true
 
     private val numberDialView: View
     private val numbers: List<TextView>
@@ -61,7 +65,7 @@ class NumberDialView @JvmOverloads constructor(
             mTextSize = a.getDimensionPixelSize(R.styleable.NumberDial_textSize, 12)
             mTextColor = a.getColor(
                 R.styleable.NumberDial_textColor,
-                context.getColor(R.color.default_text_color)
+                context.getColorFromAttr(R.attr.colorOnSurface)
             )
             mTextStyle = a.getInteger(R.styleable.NumberDial_textStyle, 0)
             mBackgroundColor = a.getColor(
@@ -80,8 +84,10 @@ class NumberDialView @JvmOverloads constructor(
             mBottomRightButtonSrc = a.getDrawable(R.styleable.NumberDial_bottomRightButtonSrc)
             mBottomRightButtonTint = a.getColor(
                 R.styleable.NumberDial_bottomRightButtonTint,
-                context.getColor(R.color.number_dial_view_biometrics_color)
+                context.getColorFromAttr(R.attr.colorOnSurface)
             )
+            mHasGrids = a.getBoolean(R.styleable.NumberDial_hasGrids, true)
+            mHasForget = a.getBoolean(R.styleable.NumberDial_hasForget, true)
 
         } finally {
             a.recycle()
@@ -145,6 +151,10 @@ class NumberDialView @JvmOverloads constructor(
             setColorFilter(mBottomRightButtonTint)
         }
 
+        numberDialView.bottomRightBackIcon.apply {
+            setColorFilter(mBottomRightButtonTint)
+        }
+
         numberDialView.bottomRightButton.setOnClickListener {
             if (backVisible) {
                 numbersEntered -= 1
@@ -176,6 +186,21 @@ class NumberDialView @JvmOverloads constructor(
                 setBackgroundColor(mDelimiterColor)
             }
         }
+
+        if (!mHasForget) {
+            numberDialView.bottomLeftButton.visibility = View.GONE
+            numberDialView.bottomLeftText.visibility = View.GONE
+        }
+
+        if (!mHasGrids) {
+            horizontalDelimiters.forEach {
+                it.visibility = View.INVISIBLE
+            }
+            verticalDelimiters.forEach {
+                it.visibility = View.INVISIBLE
+            }
+        }
+
         invalidate()
     }
 
@@ -183,11 +208,11 @@ class NumberDialView @JvmOverloads constructor(
         if (visible) {
             backVisible = true
             bottomRightBiometricsIcon.visibility = View.GONE
-            bottomRighBackIcon.visibility = View.VISIBLE
+            bottomRightBackIcon.visibility = View.VISIBLE
         } else {
             backVisible = false
             bottomRightBiometricsIcon.visibility = View.VISIBLE
-            bottomRighBackIcon.visibility = View.GONE
+            bottomRightBackIcon.visibility = View.GONE
         }
     }
 
@@ -288,5 +313,18 @@ class NumberDialView @JvmOverloads constructor(
             this.mBottomRightButtonTint = bottomRightButtonTint
             updateView()
         }
+    //endregion
+
+
+    //region Utils
+    @ColorInt
+    private fun Context.getColorFromAttr(
+        @AttrRes attrColor: Int,
+        typedValue: TypedValue = TypedValue(),
+        resolveRefs: Boolean = true
+    ): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return typedValue.data
+    }
     //endregion
 }
