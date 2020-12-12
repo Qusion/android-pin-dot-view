@@ -13,8 +13,8 @@
         <th width="700px"><h3> PinView </h3></th>
     </tr>
     <tr>
-        <th width="700px"><img src="screen-1.png" alt="screen-1" width="320" height="640" align="center" /></th>
-        <th width="700px"><img src="screen-2.png" alt="screen-2" width="320" height="640" align="center" /></th>
+        <th width="700px"><img src="screen-1.png" alt="screen-1" width="350" height="350" align="center" /></th>
+        <th width="700px"><img src="screen-2.png" alt="screen-2" width="350" height="350" align="center" /></th>
     </tr>
 </table>
 
@@ -26,9 +26,23 @@
 
 ## Usage
 ### Implementation
-`dependencies {
-    implementation 'com.github.Qusion:android-pin-dot-view:0.0.2'
-}`
+Add jitpack to project-level build.gradle file
+```
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+Add dependency to module-level build.gradle file
+
+```
+dependencies {
+    implementation 'com.github.Qusion:android-pin-dot-view:0.1.0'
+}
+```
+
 
 ### Layout
 ```
@@ -42,7 +56,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent" />
 ```
-supports `biometrics_button_src`, `back_button_src`, `forgot_button_text`, `pin_length` params
+supports `biometrics_button_src`, `back_button_src`, `forgot_button_text`, `pin_length`, `has_grids`, `has_forget` params
 
 ```
 <com.qusion.lib_pindotview.PinView
@@ -55,7 +69,7 @@ supports `biometrics_button_src`, `back_button_src`, `forgot_button_text`, `pin_
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent" />
 ```
-supports `biometrics_button_src`, `back_button_src`, `forgot_button_text`, `pin_length` params
+supports `biometrics_button_src`, `back_button_src`, `forgot_button_text`, `pin_length`, `has_grids`, `has_forget` params
 
 
 ### Activity | Fragment
