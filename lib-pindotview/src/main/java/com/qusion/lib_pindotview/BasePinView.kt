@@ -1,7 +1,6 @@
 package com.qusion.lib_pindotview
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
@@ -22,8 +21,13 @@ open class BasePinView @JvmOverloads constructor(
     var mBiometricsButtonSrc: Drawable? = null
     var mBackButtonSrc: Drawable? = null
 
+    var mHasGrids = true
+    var mHasForget = true
+
     val numberDialView: View
     val numbers: List<TextView>
+    val horizontalDelimiters: List<View>
+    val verticalDelimiters: List<View>
 
     var backVisible = false
 
@@ -44,6 +48,17 @@ open class BasePinView @JvmOverloads constructor(
             numberDialView.seven,
             numberDialView.eight,
             numberDialView.nine
+        )
+
+        horizontalDelimiters = listOf(
+            numberDialView.horizontal_one,
+            numberDialView.horizontal_two,
+            numberDialView.horizontal_three
+        )
+
+        verticalDelimiters = listOf(
+            numberDialView.vertical_one,
+            numberDialView.vertical_two
         )
     }
 

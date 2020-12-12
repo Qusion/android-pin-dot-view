@@ -33,6 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:pin_length="4"
+        app:hasForget="true"
+        app:hasGrids="true"
         android:theme="@style/ThemeOverlay.PinDotView"
         app:layout_constraintTop_toBottomOf="@id/center_guideline"
         app:layout_constraintBottom_toBottomOf="parent"

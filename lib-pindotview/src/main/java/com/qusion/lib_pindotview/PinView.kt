@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.view.View
 import kotlinx.android.synthetic.main.number_dial_view.view.*
 
 
@@ -42,6 +43,8 @@ class PinView @JvmOverloads constructor(
             mForgotButtonText = a.getString(R.styleable.PinView_forgot_button_text)
             mBiometricsButtonSrc = a.getDrawable(R.styleable.PinView_biometrics_button_src)
             mBackButtonSrc = a.getDrawable(R.styleable.PinView_back_button_src)
+            mHasGrids = a.getBoolean(R.styleable.PinDotView_hasGrids, true)
+            mHasForget = a.getBoolean(R.styleable.PinDotView_hasForget, true)
         } finally {
             a.recycle()
         }
@@ -72,6 +75,20 @@ class PinView @JvmOverloads constructor(
             isAntiAlias = true
             color = context.themeColor(R.attr.colorPrimary)
             strokeWidth = LINE_STROKE_WIDTH
+        }
+
+        if (!mHasForget) {
+            numberDialView.bottomLeftButton.visibility = View.GONE
+            numberDialView.bottomLeftText.visibility = View.GONE
+        }
+
+        if (!mHasGrids) {
+            horizontalDelimiters.forEach {
+                it.visibility = View.INVISIBLE
+            }
+            verticalDelimiters.forEach {
+                it.visibility = View.INVISIBLE
+            }
         }
     }
 
