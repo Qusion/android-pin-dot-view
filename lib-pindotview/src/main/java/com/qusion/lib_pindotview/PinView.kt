@@ -4,37 +4,26 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.text.Editable
-import android.text.TextWatcher
+import android.graphics.Typeface
 import android.util.AttributeSet
-import android.view.ActionMode
-import android.view.Menu
-import android.view.MenuItem
-import android.view.inputmethod.EditorInfo
-import androidx.appcompat.widget.AppCompatEditText
+import kotlinx.android.synthetic.main.number_dial_view.view.*
 
-class PinView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-    AppCompatEditText(context, attrs) {
 
-    private var mPinLength = 5
-    private var mTextColor = 0
-    private var mIdleColor = 0
-    private var mActiveColor = 0
-    private var mDigitSpacing = 16
+class PinView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : BasePinView(context, attrs, defStyleAttr) {
 
-    private var mCharSize = 0
-    private var mLineSpacing = 12f //12dp by default, height of the text from our lines
-
-    private var mClickListener: OnClickListener? = null
+    private var mPinLength = 4
 
     private var mIdlePaint: Paint
     private var mActivePaint: Paint
 
-    private var mLastText = ""
-    private var mPin = ""
+    private var mEnteredPin = ""
+    private var mEnteredNums = 0
+    private var mText = ""
     private var callbackSent = false
-
-    private var mNumberDialView: NumberDialView? = null
 
     private var mOnCompletedListener: OnCompletedListener? = null
 
@@ -49,192 +38,139 @@ class PinView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
             throw IllegalArgumentException("The attributes need to be passed")
         }
         try {
-            mPinLength = a.getInteger(R.styleable.PinView_pinLength, 5)
-            mTextColor = a.getColor(
-                R.styleable.PinView_textColor,
-                context.getColor(R.color.pin_view_active_color)
-            )
-            mIdleColor = a.getColor(
-                R.styleable.PinView_idleColor,
-                context.getColor(R.color.pin_view_idle_color)
-            )
-            mActiveColor = a.getColor(
-                R.styleable.PinView_activeColor,
-                context.getColor(R.color.pin_view_active_color)
-            )
-            mDigitSpacing = a.getDimensionPixelSize(R.styleable.PinView_digitSpacing, -1)
+            mPinLength = a.getInteger(R.styleable.PinView_pin_length, 4)
+            mForgotButtonText = a.getString(R.styleable.PinView_forgot_button_text)
+            mBiometricsButtonSrc = a.getDrawable(R.styleable.PinView_biometrics_button_src)
+            mBackButtonSrc = a.getDrawable(R.styleable.PinView_back_button_src)
         } finally {
             a.recycle()
         }
 
+        numbers.forEach { number ->
+            number.setOnClickListener { view ->
+                digitAdded(numbers.indexOf(view))
+            }
+        }
+
+        numberDialView.bottomRightButton.setOnClickListener {
+            digitRemoved()
+        }
+
+        numberDialView.bottomLeftButton.setOnClickListener {
+            mOnForgotButtonClickedListener?.invoke()
+        }
+
+        applyDialStyles()
+
         mIdlePaint = Paint().apply {
-            color = mIdleColor
+            isAntiAlias = true
+            color = context.themeColor(R.attr.colorOnSurface)
             strokeWidth = LINE_STROKE_WIDTH
         }
 
         mActivePaint = Paint().apply {
-            color = mActiveColor
+            isAntiAlias = true
+            color = context.themeColor(R.attr.colorPrimary)
             strokeWidth = LINE_STROKE_WIDTH
         }
-
-        val multi = context.resources.displayMetrics.density
-        setBackgroundResource(0)
-
-        if (mDigitSpacing < 0) mDigitSpacing = (16f * multi).toInt()
-        mLineSpacing *= multi //convert to pixels for our density
-
-        paint.color = mTextColor
-
-        //Disable copy paste
-        super.setCustomSelectionActionModeCallback(object : ActionMode.Callback {
-            override fun onActionItemClicked(p0: ActionMode?, p1: MenuItem?): Boolean = false
-
-            override fun onCreateActionMode(p0: ActionMode?, p1: Menu?): Boolean = false
-
-            override fun onPrepareActionMode(p0: ActionMode?, p1: Menu?): Boolean = false
-
-            override fun onDestroyActionMode(p0: ActionMode?) {
-            }
-        })
-
-        // When tapped, move cursor to end of text.
-        super.setOnClickListener {
-            setSelection(getEnteredPin().length)
-            if (mClickListener != null) {
-                mClickListener!!.onClick(it)
-            }
-        }
-        isCursorVisible = false
-        imeOptions = EditorInfo.IME_ACTION_DONE
-
-        super.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                setSelection(getEnteredPin().length)
-            }
-        })
-
-        setText(text.toString().padEnd(mPinLength, '*'))
-        mLastText = text.toString()
     }
 
-    override fun setCustomSelectionActionModeCallback(actionModeCallback: ActionMode.Callback) {
-        throw RuntimeException("setCustomSelectionActionModeCallback() not supported.")
-    }
-
-    override fun onDraw(canvas: Canvas) {
-        //Text input handling
-        val enteredPin = getEnteredPin()
-
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
         when {
-            enteredPin.isNotEmpty() -> {
-                when {
-                    enteredPin.length > mPinLength -> {
-                        setText(mLastText)
-                    }
-                    text.toString().length > mLastText.length -> {
-                        setText(enteredPin.padEnd(mPinLength, '*'))
-                    }
-                    text.toString().length < mLastText.length -> {
-                        setText(
-                            enteredPin.substring(0, mLastText.replace("*", "").length - 1)
-                                .padEnd(mPinLength, '*')
-                        )
-                        callbackSent = false
-                    }
+            mEnteredPin.length <= mPinLength -> {
+                mText = mEnteredPin.padEnd(mPinLength, '*')
+            }
+            mEnteredPin.length == mPinLength -> {
+                if (!callbackSent) {
+                    callbackSent = true
+                    mOnCompletedListener?.invoke(mEnteredPin)
                 }
             }
-            enteredPin.isEmpty() -> {
-                numberDialView?.clear()
-                if (text.toString() != "*".repeat(mPinLength)) {
-                    setText("*".repeat(mPinLength))
-                }
-            }
-            text.toString().length != mLastText.length -> {
-                setText("*".repeat(mPinLength))
-            }
         }
-
-        mPin = getEnteredPin()
-        if (mPin.length == mPinLength && !callbackSent) {
-            callbackSent = true
-            mOnCompletedListener?.invoke(getEnteredPin())
-        }
-        mLastText = text.toString()
 
         //View rendering
+        val density = resources.displayMetrics.density
         val availableWidth = width - paddingRight - paddingLeft
-        mCharSize = (availableWidth - mDigitSpacing * (mPinLength - 1)) / mPinLength
 
-        var startX = paddingLeft.toFloat()
-        val bottom = height - paddingBottom.toFloat()
+        val mCharSize = CHAR_SIZE * density
+        val mDigitSpacing = DIGIT_SPACING * density
+        val mLineSpacing = LINE_SPACING * density
 
-        val textLength = text.toString().length
-        val textWidths = FloatArray(textLength)
+        var startX =
+            ((availableWidth / 2) - (mPinLength * mCharSize + (mPinLength - 1) * mDigitSpacing) / 2) - mCharSize / 2
 
-        paint.getTextWidths(text, 0, textLength, textWidths)
-
-        for (i in 0..mPinLength) {
-            if (getEnteredPin().length >= i) {
-                canvas.drawLine(startX, bottom, startX + mCharSize, bottom, mActivePaint)
+        for (i in 0 until mPinLength) {
+            if (mEnteredPin.length >= i) {
+                canvas.drawLine(
+                    startX,
+                    mCharSize + mLineSpacing,
+                    startX + 2 * mCharSize,
+                    mCharSize + mLineSpacing,
+                    mActivePaint
+                )
             } else {
-                canvas.drawLine(startX, bottom, startX + mCharSize, bottom, mIdlePaint)
-            }
-
-            if (textLength > i) {
-                val middle = startX + mCharSize / 2
-                canvas.drawText(
-                    text as Editable,
-                    i,
-                    i + 1,
-                    middle - textWidths[0] / 2,
-                    bottom - mLineSpacing,
-                    paint
+                canvas.drawLine(
+                    startX,
+                    mCharSize + mLineSpacing,
+                    startX + 2 * mCharSize,
+                    mCharSize + mLineSpacing,
+                    mIdlePaint
                 )
             }
 
-            startX += mCharSize + mDigitSpacing
+            val middle = startX + (3 * mCharSize / 4)
+            canvas.drawText(
+                mText,
+                i,
+                i + 1,
+                middle,
+                mCharSize,
+                Paint().apply {
+                    isAntiAlias = true
+                    color = context.themeColor(R.attr.colorOnSurface)
+                    textSize = CHAR_SIZE * density
+                    typeface = Typeface.DEFAULT_BOLD
+                    alpha = if(i > mEnteredNums) 32 else 255
+                }
+            )
+
+            startX += (CHAR_SIZE + DIGIT_SPACING) * resources.displayMetrics.density
         }
     }
 
-    private fun getEnteredPin(): String {
-        return text.toString().replace("*", "")
+    private fun digitAdded(digit: Int) {
+        toggleBackButton(true)
+        mEnteredNums += 1
+        mEnteredPin = "$mEnteredPin$digit"
+        if (mEnteredNums == mPinLength) {
+            mOnCompletedListener?.invoke(mEnteredPin)
+        }
+        invalidate()
     }
 
-    private fun handleNumberInput() {
-        mNumberDialView?.setOnNumberClickListener { digit ->
-            setText("${text.toString()}$digit")
+    private fun digitRemoved() {
+        if (backVisible) {
+            mEnteredNums -= 1
             invalidate()
+            if (mEnteredNums == 0) {
+                toggleBackButton(false)
+            }
+            mEnteredPin = mEnteredPin.dropLast(1)
+            callbackSent = false
+        } else {
+            mOnBiometricsButtonClickedListener?.invoke()
         }
-        mNumberDialView?.setOnNumberRemovedListener {
-            setText(text.toString().dropLast(1))
-            invalidate()
-        }
-    }
-
-    //region Setters
-    override fun setOnClickListener(listener: OnClickListener?) {
-        mClickListener = listener
     }
 
     fun setOnCompletedListener(l: OnCompletedListener) {
         mOnCompletedListener = l
     }
 
-    var numberDialView: NumberDialView?
-        get() = mNumberDialView
-        set(numberDialView) {
-            this.mNumberDialView = numberDialView
-            showSoftInputOnFocus = false
-            handleNumberInput()
-        }
-
-    //endregion
-
     companion object {
         private const val LINE_STROKE_WIDTH = 4f
+        private const val DIGIT_SPACING = 40f
+        private const val CHAR_SIZE = 24f
+        private const val LINE_SPACING = 16f
     }
 }
