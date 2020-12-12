@@ -5,8 +5,8 @@
         <attr name="back_button_src" format="reference" />
         <attr name="forgot_button_text" format="string" />
         <attr name="pin_length" format="integer" />
-        <attr name="hasGrids" format="boolean" />
-        <attr name="hasForget" format="boolean" />
+        <attr name="has_grids" format="boolean" />
+        <attr name="has_forget" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="PinView">
@@ -14,7 +14,7 @@
         <attr name="back_button_src" />
         <attr name="forgot_button_text" />
         <attr name="pin_length" />
-        <attr name="hasGrids" />
-        <attr name="hasForget" />
+        <attr name="has_grids" />
+        <attr name="has_forget" />
     </declare-styleable>
 </resources>

@@ -43,8 +43,8 @@ class PinView @JvmOverloads constructor(
             mForgotButtonText = a.getString(R.styleable.PinView_forgot_button_text)
             mBiometricsButtonSrc = a.getDrawable(R.styleable.PinView_biometrics_button_src)
             mBackButtonSrc = a.getDrawable(R.styleable.PinView_back_button_src)
-            mHasGrids = a.getBoolean(R.styleable.PinDotView_hasGrids, true)
-            mHasForget = a.getBoolean(R.styleable.PinDotView_hasForget, true)
+            mHasGrids = a.getBoolean(R.styleable.PinDotView_has_grids, true)
+            mHasForget = a.getBoolean(R.styleable.PinDotView_has_forget, true)
         } finally {
             a.recycle()
         }
