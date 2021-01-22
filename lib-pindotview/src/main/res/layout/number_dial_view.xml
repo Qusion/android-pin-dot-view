@@ -11,10 +11,12 @@
 
     <TextView
         android:id="@+id/one"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="1"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_one"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,10 +26,12 @@
 
     <TextView
         android:id="@+id/two"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="2"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_one"
         app:layout_constraintLeft_toLeftOf="@id/vertical_one"
         app:layout_constraintRight_toRightOf="@id/vertical_two"
@@ -36,10 +40,12 @@
 
     <TextView
         android:id="@+id/three"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="3"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_one"
         app:layout_constraintLeft_toLeftOf="@id/vertical_two"
         app:layout_constraintRight_toRightOf="parent"
@@ -48,10 +54,12 @@
 
     <TextView
         android:id="@+id/four"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="4"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_two"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/vertical_one"
@@ -60,10 +68,12 @@
 
     <TextView
         android:id="@+id/five"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="5"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_two"
         app:layout_constraintLeft_toLeftOf="@id/vertical_one"
         app:layout_constraintRight_toRightOf="@id/vertical_two"
@@ -72,10 +82,12 @@
 
     <TextView
         android:id="@+id/six"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="6"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_two"
         app:layout_constraintLeft_toLeftOf="@id/vertical_two"
         app:layout_constraintRight_toRightOf="parent"
@@ -83,10 +95,12 @@
 
     <TextView
         android:id="@+id/seven"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="7"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_three"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/vertical_one"
@@ -94,10 +108,12 @@
 
     <TextView
         android:id="@+id/eight"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="8"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_three"
         app:layout_constraintLeft_toLeftOf="@id/vertical_one"
         app:layout_constraintRight_toRightOf="@id/vertical_two"
@@ -105,10 +121,12 @@
 
     <TextView
         android:id="@+id/nine"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="9"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/horizontal_three"
         app:layout_constraintLeft_toLeftOf="@id/vertical_two"
         app:layout_constraintRight_toRightOf="parent"
@@ -117,10 +135,12 @@
 
     <TextView
         android:id="@+id/zero"
-        style="@style/TextAppearance.PinView.Digits"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
         android:text="0"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/vertical_one"
         app:layout_constraintRight_toRightOf="@id/vertical_two"
