@@ -32,13 +32,13 @@
         android:id="@+id/pinDotView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:pin_length="4"
+        android:theme="@style/ThemeOverlay.PinDotView"
         app:has_forget="false"
         app:has_grids="true"
-        android:theme="@style/ThemeOverlay.PinDotView"
-        app:layout_constraintTop_toBottomOf="@id/center_guideline"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/center_guideline"
+        app:pin_length="4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/center_guideline"

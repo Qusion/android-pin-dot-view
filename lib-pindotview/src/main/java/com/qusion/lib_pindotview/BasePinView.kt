@@ -21,6 +21,9 @@ open class BasePinView @JvmOverloads constructor(
     var mBiometricsButtonSrc: Drawable? = null
     var mBackButtonSrc: Drawable? = null
 
+
+    var mShouldShowBiometrics: Boolean = true
+
     var mHasGrids = true
     var mHasForget = true
 
@@ -62,7 +65,7 @@ open class BasePinView @JvmOverloads constructor(
         )
     }
 
-    fun applyDialStyles() {
+    protected fun applyDialStyles() {
         numberDialView.bottomLeftText.text =
             mForgotButtonText ?: context.getText(R.string.bottom_left_button_string)
 
@@ -75,16 +78,26 @@ open class BasePinView @JvmOverloads constructor(
         )
     }
 
-
-    fun toggleBackButton(visible: Boolean) {
+    protected fun toggleBackButton(visible: Boolean) {
         if (visible) {
             backVisible = true
             bottomRightBiometricsIcon.visibility = View.GONE
             bottomRightBackIcon.visibility = View.VISIBLE
         } else {
             backVisible = false
-            bottomRightBiometricsIcon.visibility = View.VISIBLE
+            if (mShouldShowBiometrics) {
+                bottomRightBiometricsIcon.visibility = View.VISIBLE
+            }
             bottomRightBackIcon.visibility = View.GONE
+        }
+    }
+
+    fun setBiometricVisibility(show: Boolean) {
+        mShouldShowBiometrics = show
+        if (show) {
+            numberDialView.bottomRightBiometricsIcon.visibility = View.VISIBLE
+        } else {
+            numberDialView.bottomRightBiometricsIcon.visibility = View.GONE
         }
     }
 

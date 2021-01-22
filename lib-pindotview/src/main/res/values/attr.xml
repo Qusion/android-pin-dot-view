@@ -7,6 +7,7 @@
         <attr name="pin_length" format="integer" />
         <attr name="has_grids" format="boolean" />
         <attr name="has_forget" format="boolean" />
+        <attr name="dot_spacing" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="PinView">

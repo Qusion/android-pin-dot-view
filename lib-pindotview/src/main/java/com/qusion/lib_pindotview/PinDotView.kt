@@ -8,6 +8,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Transformation
+import androidx.annotation.DimenRes
+import androidx.annotation.Dimension
 import kotlinx.android.synthetic.main.number_dial_view.view.*
 
 typealias OnCompletedListener = (String) -> Unit
@@ -19,6 +21,9 @@ class PinDotView @JvmOverloads constructor(
 ) : BasePinView(context, attrs, defStyleAttr) {
 
     private var mPinLength = 4
+
+    @Dimension
+    private var mDotSpacing: Int = DYNAMIC_DOT_SPACING
 
     private var mIdlePaint: Paint? = null
     private var mCurrentGlarePaint: Paint? = null
@@ -64,6 +69,8 @@ class PinDotView @JvmOverloads constructor(
             mBackButtonSrc = a.getDrawable(R.styleable.PinDotView_back_button_src)
             mHasGrids = a.getBoolean(R.styleable.PinDotView_has_grids, true)
             mHasForget = a.getBoolean(R.styleable.PinDotView_has_forget, true)
+            mDotSpacing =
+                a.getDimensionPixelSize(R.styleable.PinDotView_dot_spacing, DYNAMIC_DOT_SPACING)
         } finally {
             a.recycle()
         }
@@ -87,6 +94,7 @@ class PinDotView @JvmOverloads constructor(
         mIdlePaint = Paint().apply {
             isAntiAlias = true
             color = context.themeColor(R.attr.colorOnSurface)
+            alpha = 30
         }
 
         mCurrentGlarePaint = Paint().apply {
@@ -125,7 +133,12 @@ class PinDotView @JvmOverloads constructor(
         super.dispatchDraw(canvas)
 
         val density = resources.displayMetrics.density
-        val dotSpacing = ((width - paddingStart - paddingEnd) / (2 * (mPinLength - 1))).toFloat()
+
+        val dotSpacing = if (mDotSpacing == DYNAMIC_DOT_SPACING) {
+            ((width - paddingStart - paddingEnd) / (2 * (mPinLength - 1))).toFloat()
+        } else {
+            mDotSpacing.toFloat()
+        }
         val startX = ((width / 2) - (((mPinLength - 1) * dotSpacing)) / 2) + animatedX
         mCurrentGlarePaint?.alpha = animatedAlpha
         for (i in 0 until mPinLength) {
@@ -193,6 +206,8 @@ class PinDotView @JvmOverloads constructor(
         }
     }
 
+    /* Public API: */
+
     fun clearPin() {
         enteredNums = 0
         mEnteredPin = ""
@@ -225,6 +240,8 @@ class PinDotView @JvmOverloads constructor(
     companion object {
         private const val IDLE_DOT_SIZE = 8f
         private const val GLARE_SIZE = 22f
+
+        private const val DYNAMIC_DOT_SPACING = -1
     }
 }
 
